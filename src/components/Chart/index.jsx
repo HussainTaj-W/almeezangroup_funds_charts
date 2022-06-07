@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { createChart, isBusinessDay } from "lightweight-charts";
+import { ColorType, createChart, isBusinessDay } from "lightweight-charts";
 
 function cleanData(data) {
   data = [...new Map(data.map((item) => [item["time"], item])).values()];
@@ -25,7 +25,7 @@ function createLineSeriesData({ data, timeKey, valueKey }) {
 }
 
 function stringToColor(str = "") {
-  let hex = "FFFF00" + parseInt(str, 36).toString(16);
+  let hex = "FFFF00" + Math.floor(parseInt(str, 36) * (parseInt(str, 36) % 365)).toString(16);
   return "#" + hex.substring(hex.length - 6);
 }
 
@@ -43,6 +43,35 @@ const Chart = ({ data = [], timeCol = "time", plotCols = new Set() }) => {
     const chart = createChart(ref.current, {
       height,
       width,
+      layout: {
+        background: {
+          type: ColorType.Solid,
+          color: '#1e272e',
+        },
+        textColor: '#d2dae2',
+      },
+      grid: {
+        vertLines: {
+          color: '#333',
+        },
+        horzLines: {
+          color: '#333',
+        },
+      },
+      rightPriceScale: {
+        scaleMargins: {
+          top: 0.3,
+          bottom: 0.25,
+        },
+      },
+      crosshair: {
+        vertLine: {
+          color: '#fff',
+        },
+        horzLine: {
+          color: '#fff',
+        }
+      },
     });
 
     const lineSeries = {};

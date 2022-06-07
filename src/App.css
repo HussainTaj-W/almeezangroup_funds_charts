@@ -1,5 +1,7 @@
 .App {
   padding: 20px;
+  background-color: black;
+  color: aliceblue;
 }
 
 .floating-tooltip-2 {
