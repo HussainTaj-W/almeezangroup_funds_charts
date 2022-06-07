@@ -1,45 +1,25 @@
-import './App.css';
-import Chart from './components/Chart';
-
-import * as XLSX from 'xlsx';
-import { useState } from 'react';
+import { useState } from "react";
+import "./App.css";
+import Chart from "./components/Chart";
+import Form from "./components/Form";
 
 function App() {
-  const [sheetsData, setSheetsData] = useState([]);
-
-  const readXLSXFileData = (file) => {
-    const reader = new FileReader();
-
-    reader.onload = (event) => {
-      const data = event.target.result;
-      const workbook = XLSX.read(data, {
-        type: 'binary'
-      });
-
-      const sheetsData = workbook.SheetNames.map((sheetName) => XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]));
-      setSheetsData(sheetsData);
-    }
-
-
-    reader.onerror = function (ex) {
-      console.error(ex);
-    };
-
-    reader.readAsBinaryString(file);
-  };
-
-  const onFileChange = (event) => {
-    if (event.target.files)
-      readXLSXFileData(event.target.files[0]);
-  };
+  const [chartsData, setChartsData] = useState([]);
 
   return (
     <div className="App">
-      <input type="file" name="file" onChange={onFileChange} accept=".xlsx" />
-      {
-        sheetsData.map((data, index) => <Chart data={data} key={`${index}`} />)
-      }
-    </div >
+      <Form onSubmit={(data) => {
+        setChartsData(data);
+      }} />
+      {chartsData.map(({ rawData: data, timeCol, plotCols }, index) => (
+        <Chart
+          data={data}
+          timeCol={timeCol}
+          plotCols={plotCols}
+          key={`${index}`}
+        />
+      ))}
+    </div>
   );
 }
 
