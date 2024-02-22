@@ -4,4 +4,6 @@
 
 Plot any historical data taken from [https://www.almeezangroup.com/funds-archive/](https://www.almeezangroup.com/funds-archive/).
 
+The website is available at: [https://hussaintaj-w.github.io/almeezangroup_funds_charts/](https://hussaintaj-w.github.io/almeezangroup_funds_charts/)
+
 ![Demo Screenshot](./public/images/demo-screenshot.jpg)

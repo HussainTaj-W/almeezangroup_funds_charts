@@ -88,14 +88,22 @@ const Form = ({ onSubmit }) => {
           className="shadow appearance-none border rounded ml-2 py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
+      {!isFileSelected && (
+        <>
+          <span className="m-1">You can get data from here:</span>
+          <a
+            className="underline text-blue-400 p-1"
+            href="https://www.almeezangroup.com/funds-archive/"
+            target="_blank"
+          >
+            https://www.almeezangroup.com/funds-archive/
+          </a>
+        </>
+      )}
       {isFileSelected && (
         <div>
           {sheetsData.map(({ cols, name, timeCol, plotCols }) => (
             <div key={`sheet-${name}`}>
-              <div className="p-1 text-sm ml-4">
-                <label className="p-0.5">Discovered worksheets </label>
-                <p className="text-green-400">{name}</p>
-              </div>
               <div className="p-1">
                 <label className="p-0.5">Select Time Attribute</label>
                 <select
