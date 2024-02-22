@@ -1,13 +1,15 @@
-import { useState } from "react";
-import "./App.css";
+import { useState } from 'react'
+
 import Chart from "./components/Chart";
 import Form from "./components/Form";
+
+import './App.css'
 
 function App() {
   const [chartsData, setChartsData] = useState([]);
 
   return (
-    <div className="App">
+    <div className="p-1">
       <Form onSubmit={(data) => {
         setChartsData(data);
       }} />
@@ -20,7 +22,7 @@ function App() {
         />
       ))}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -25,7 +25,9 @@ function createLineSeriesData({ data, timeKey, valueKey }) {
 }
 
 function stringToColor(str = "") {
-  let hex = "FFFF00" + Math.floor(parseInt(str, 36) * (parseInt(str, 36) % 365)).toString(16);
+  let hex =
+    "FFFF00" +
+    Math.floor(parseInt(str, 36) * (parseInt(str, 36) % 365)).toString(16);
   return "#" + hex.substring(hex.length - 6);
 }
 
@@ -38,24 +40,24 @@ const Chart = ({ data = [], timeCol = "time", plotCols = new Set() }) => {
   }
 
   useEffect(() => {
-    const height = window.innerHeight - 40;
-    const width = window.innerWidth - 40;
+    const height = (window.innerHeight * 0.8).toFixed(0);
+    const width = (window.innerWidth * 0.8).toFixed(0);
     const chart = createChart(ref.current, {
       height,
       width,
       layout: {
         background: {
           type: ColorType.Solid,
-          color: '#1e272e',
+          color: "#1e272e",
         },
-        textColor: '#d2dae2',
+        textColor: "#d2dae2",
       },
       grid: {
         vertLines: {
-          color: '#333',
+          color: "#333",
         },
         horzLines: {
-          color: '#333',
+          color: "#333",
         },
       },
       rightPriceScale: {
@@ -66,11 +68,11 @@ const Chart = ({ data = [], timeCol = "time", plotCols = new Set() }) => {
       },
       crosshair: {
         vertLine: {
-          color: '#fff',
+          color: "#fff",
         },
         horzLine: {
-          color: '#fff',
-        }
+          color: "#fff",
+        },
       },
     });
 
@@ -163,7 +165,7 @@ const Chart = ({ data = [], timeCol = "time", plotCols = new Set() }) => {
 
   return (
     <>
-      <div ref={ref} id="chart" />
+      <div ref={ref} id="chart" className="flex justify-center m-4" />
     </>
   );
 };
