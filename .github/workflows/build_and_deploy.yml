@@ -29,7 +29,9 @@ jobs:
           token: ${{ secrets.GH_PAT }}
 
       - name: Build app
-        run: npm run build
+        run: |
+          echo "building wiht BASE_SITE_URL $BASE_SITE_URL"
+          npm run build
         env:
           BASE_SITE_URL: ${{ steps.pages_conf.outputs.base_path }}
 
